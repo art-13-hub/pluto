@@ -10,4 +10,13 @@ $('#logout').on('click', function () {
             }
         })
     }
+});
+
+$.ajax({
+    type:'get',
+    url:`/users/${userId}`,
+    success:function(res){
+        $('.profile .name').text(res,nickname);
+        $('.profile img.avatar').attr('src',res.avatar)
+    }
 })

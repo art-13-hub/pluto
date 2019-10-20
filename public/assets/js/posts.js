@@ -1,14 +1,20 @@
-// $.ajax({
-//     type: 'get',
-//     url: '/posts',
-//     success: function (res) {
-//         var html = template('postsTpl', res);
-//         // console.log(html);
-//         $('#postsBox').html(html);
-//         var page = template('pageTpl', res);
-//         $('.pagination').html(html);
-//     }
-// });
+// 获取文章列表数据
+$.ajax({
+    type: 'get',
+    url: '/posts',
+    success: function (res) {
+        var html = template('postsTpl', res);
+        // console.log(html);
+        $('#postsBox').html(html);
+        // var page = template('pageTpl', res);
+        // $('.pagination').html(page);
+    }
+});
+// 处理日期事件格式
+function dateFormat(date){
+     date = new Date(date);
+    return date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate();
+}
 // 分页功能
 function changePage(pageNum) {
     $.ajax({
@@ -22,7 +28,7 @@ function changePage(pageNum) {
             // console.log(html);
             $('#postsBox').html(html);
             var page = template('pageTpl', res);
-            $('.pagination').html(html);
+            $('.pagination').html(page);
         }
     })
 }

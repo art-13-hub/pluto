@@ -94,7 +94,7 @@ $('#tb').on('click', '.del', function () {
         var id = $(this).attr('data-id');
         $.ajax({
             type: 'delete',
-            url: '/users/' + id,
+            url: `/users/${id}`,
             success: function () {
                 location.reload();
             }
@@ -115,7 +115,7 @@ $('#checkAll').on('change', function () {
     }
 });
 
-// // 全选效果的切换
+// // 全选效果
 $('#tb').on('change', 'input[type="checkbox"]', function () {
     //只有当tbody中所有的checkbox的数量和所有打钩的checkbox数量一样 说明就是全选中
     if ($('#tb input[type="checkbox"]').length == $('#tb input[type="checkbox"]:checked').length) {
@@ -123,6 +123,7 @@ $('#tb').on('change', 'input[type="checkbox"]', function () {
     } else {
         $('#checkAll').prop('checked', false)
     }
+    // 判断是否显示批量删除按钮
     if ($('#tb input[type="checkbox"]:checked').length > 0) {
         $('#deleteAll').show();
     } else {
@@ -142,7 +143,7 @@ $('#deleteAll').on('click', function () {
         str = str.substr(0, str.length - 1)
         $.ajax({
             type: 'delete',
-            url: '/users/'+str,
+            url: `/users/${str}`,
             success: function () {
                 location.reload();
             }
